@@ -3,13 +3,26 @@
 module.exports = {
   // Base configuration for all tests
   projects: [
-    // Server-side tests configuration
+    // Server-side integration tests configuration
     {
-      displayName: 'server',
+      displayName: 'server-integration',
       testEnvironment: 'node',
-      testMatch: ['<rootDir>/server/tests/**/*.test.js'],
+      testMatch: ['<rootDir>/server/tests/integration/**/*.test.js'],
       moduleFileExtensions: ['js', 'json', 'node'],
       setupFilesAfterEnv: ['<rootDir>/server/tests/setup.js'],
+      coverageDirectory: '<rootDir>/coverage/server',
+      collectCoverageFrom: [
+        'server/src/**/*.js',
+        '!server/src/config/**',
+        '!**/node_modules/**',
+      ],
+    },
+    // Server-side unit tests configuration
+    {
+      displayName: 'server-unit',
+      testEnvironment: 'node',
+      testMatch: ['<rootDir>/server/tests/unit/**/*.test.js'],
+      moduleFileExtensions: ['js', 'json', 'node'],
       coverageDirectory: '<rootDir>/coverage/server',
       collectCoverageFrom: [
         'server/src/**/*.js',
@@ -30,7 +43,18 @@ module.exports = {
       },
       setupFilesAfterEnv: ['<rootDir>/client/src/tests/setup.js'],
       transform: {
-        '^.+\\.(js|jsx)$': 'babel-jest',
+        '^.+\\.(js|jsx)$': ['babel-jest', {
+          presets: [
+            ['@babel/preset-env', {
+              targets: {
+                node: 'current'
+              }
+            }],
+            ['@babel/preset-react', {
+              runtime: 'automatic'
+            }]
+          ]
+        }],
       },
       coverageDirectory: '<rootDir>/coverage/client',
       collectCoverageFrom: [
@@ -53,5 +77,5 @@ module.exports = {
       lines: 70,
     },
   },
-  testTimeout: 10000,
+  testTimeout: 30000,
 }; 

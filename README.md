@@ -1,87 +1,56 @@
 # Testing and Debugging MERN Applications
 
-This assignment focuses on implementing comprehensive testing strategies for a MERN stack application, including unit testing, integration testing, and end-to-end testing, along with debugging techniques.
+A MERN stack application with comprehensive testing strategies including unit, integration, and end-to-end testing.
 
-## Assignment Overview
+## Setup
 
-You will:
-1. Set up testing environments for both client and server
-2. Write unit tests for React components and server functions
-3. Implement integration tests for API endpoints
-4. Create end-to-end tests for critical user flows
-5. Apply debugging techniques for common MERN stack issues
+1. Install dependencies:
 
-## Project Structure
+   ```bash
+   npm run install-all
+   ```
 
+2. Set up environment variables (in server directory):
+   ```bash
+   cp .env.example .env
+   # Edit .env with your MongoDB connection string
+   ```
+
+## Running Tests
+
+```bash
+# All tests
+npm test
+
+# Unit tests only
+npm run test:unit
+
+# Integration tests only
+npm run test:integration
+
+# End-to-end tests (make sure server and client are running)
+npm run test:e2e
+
+# Test coverage
+npm run test:coverage
 ```
-mern-testing/
-├── client/                 # React front-end
-│   ├── src/                # React source code
-│   │   ├── components/     # React components
-│   │   ├── tests/          # Client-side tests
-│   │   │   ├── unit/       # Unit tests
-│   │   │   └── integration/ # Integration tests
-│   │   └── App.jsx         # Main application component
-│   └── cypress/            # End-to-end tests
-├── server/                 # Express.js back-end
-│   ├── src/                # Server source code
-│   │   ├── controllers/    # Route controllers
-│   │   ├── models/         # Mongoose models
-│   │   ├── routes/         # API routes
-│   │   └── middleware/     # Custom middleware
-│   └── tests/              # Server-side tests
-│       ├── unit/           # Unit tests
-│       └── integration/    # Integration tests
-├── jest.config.js          # Jest configuration
-└── package.json            # Project dependencies
-```
 
-## Getting Started
+## Testing Strategy
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Follow the setup instructions in the `Week6-Assignment.md` file
-4. Explore the starter code and existing tests
-5. Complete the tasks outlined in the assignment
+- **Unit Tests**: React components, hooks, middleware, models, and utilities (70%+ coverage)
+- **Integration Tests**: API endpoints with database operations using Supertest
+- **E2E Tests**: Complete user flows with Cypress (CRUD operations, navigation, error handling)
 
-## Files Included
+## Debugging Features
 
-- `Week6-Assignment.md`: Detailed assignment instructions
-- Starter code for a MERN application with basic test setup:
-  - Sample React components with test files
-  - Express routes with test files
-  - Jest and testing library configurations
-  - Example tests for reference
+- **Server**: Custom logger, global error handler, request logging
+- **Client**: Error boundaries, centralized API error handling
+- **Tools**: Browser DevTools integration, React DevTools support
 
-## Requirements
+## Submission Checklist
 
-- Node.js (v18 or higher)
-- MongoDB (local installation or Atlas account)
-- npm or yarn
-- Basic understanding of testing concepts
-
-## Testing Tools
-
-- Jest: JavaScript testing framework
-- React Testing Library: Testing utilities for React
-- Supertest: HTTP assertions for API testing
-- Cypress/Playwright: End-to-end testing framework
-- MongoDB Memory Server: In-memory MongoDB for testing
-
-## Submission
-
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
-
-1. Complete all required tests (unit, integration, and end-to-end)
-2. Achieve at least 70% code coverage for unit tests
-3. Document your testing strategy in the README.md
-4. Include screenshots of your test coverage reports
-5. Demonstrate debugging techniques in your code
-
-## Resources
-
-- [Jest Documentation](https://jestjs.io/docs/getting-started)
-- [React Testing Library Documentation](https://testing-library.com/docs/react-testing-library/intro/)
-- [Supertest Documentation](https://github.com/visionmedia/supertest)
-- [Cypress Documentation](https://docs.cypress.io/)
-- [MongoDB Testing Best Practices](https://www.mongodb.com/blog/post/mongodb-testing-best-practices) 
+- [x] Complete test suite (unit, integration, E2E)
+- [x] 70%+ code coverage
+- [x] Error boundaries and global error handler
+- [x] Logging strategies
+- [x] Testing documentation
